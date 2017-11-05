@@ -1,38 +1,39 @@
 <div class="homeContainer">
 
-	<div class="container">
-		<div class="row">
-		
-			<div class="listContainer col-md-3" ng-repeat="list in vm.lists track by $index">
-				<div class="well">
-					<h2>{{ list.name }}</h2>
-					<ul class="list">
+    <div class="container">
+        <div class="row">
 
-						<li ng-repeat="item in list.items track by $index">
-							<button class="btn btn-default pull-left" ng-click="vm.moveList($index, $parent.$index, 'L')">
-								👈
-							</button>
-							<span class="textDesc">{{item}}</span>
-							<button class="btn btn-default pull-right" ng-click="vm.moveList($index, $parent.$index, 'R')">
-								👉
-							</button>
-						</li>
+            <div class="listContainer col-md-3" ng-repeat="list in vm.lists track by $index">
+                <div class="well">
+                    <h2>{{ list.name }}</h2>
+                    <ul class="list">
 
-					</ul>
-					<div class="addNew form-group">
-						<input type="text" ng-model="vm.lists[$index].tempTask" ng-change="vm.updateValue($index)" ng-trim="true" placeholder="Add a task" />
-						<button class="btn btn-default" ng-click="vm.addToList($index)">
-							+
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<button class="btn btn-default" ng-click="vm.addList()">
-							+
-				</button>
-			</div>
-		</div>
-	</div>
+                        <li ng-repeat="item in list.items track by $index">
+                            <button class="btn btn-default pull-left" ng-click="vm.moveList($index, $parent.$index, 'L')">
+                                👈
+                            </button>
+                            <span class="textDesc">{{item}}</span>
+                            <button class="btn btn-default pull-right" ng-click="vm.moveList($index, $parent.$index, 'R')">
+                                👉
+                            </button>
+                        </li>
+
+                    </ul>
+                    <div class="addNew form-group">
+                        <input type="text" ng-model="vm.lists[$index].tempTask" ng-change="vm.updateValue($index)" ng-trim="true" placeholder="Add a task" />
+                        <button class="btn btn-default" ng-click="vm.addToList($index)">
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="text" ng-model="vm.tempName" ng-change="vm.tempName" ng-trim="true" placeholder="Person Name" />
+                <button class="btn btn-default" ng-click="vm.addList()">
+                    +
+                </button>
+            </div>
+        </div>
+    </div>
 
 </div>

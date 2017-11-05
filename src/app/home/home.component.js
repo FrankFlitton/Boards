@@ -16,6 +16,7 @@
         vm.addToList = addToList;
         vm.moveList = moveList;
         vm.addList = addList;
+        vm.tempName = '';
         
         vm.lists = [
         {
@@ -67,7 +68,7 @@
         function moveList(itemIndex, listIndex, direction) {
             
             var target = vm.lists[listIndex].items[itemIndex],
-                moveby = 0,
+                moveBy = 0,
                 listTotal = vm.lists.length,
                 destination = null,
                 destinationIndex = null;
@@ -75,19 +76,19 @@
             // find direction to move
             switch (direction) {
                 case 'L':
-                    moveby -= 1;
+                    moveBy -= 1;
                     break
                 case 'R':
-                    moveby += 1;
+                    moveBy += 1;
                     break
             }
             
-            console.log(itemIndex);
+            console.log(listTotal);
             
             // New Array index
-            destinationIndex = _findListNumber(moveby, listIndex, listTotal);
-            
-            destination = vm.lists[destinationIndex].items;
+            destinationIndex = _findListNumber(moveBy, listIndex, listTotal);
+            console.log(vm);
+            destination = vm.lists[destinationIndex]['items'];
             
             //Move to Proper place
             destination.push(target);
@@ -99,12 +100,21 @@
             function _findListNumber(m, l , t) {
                 return ( ( l + m + t ) % t ); // avoid negitive integers, add total 
             }
+            
+            
                         
         }
         
         function addList(name) {
-            vm.lists.push(vm.listTemplate);
-            vm.lists[vm.lists.length - 1].name = 'George'
+            if (vm.tempName.length > 0) {
+                var newList = angular.copy(vm.listTemplate);
+                newList.name = vm.tempName;
+                newList.items = [];
+                vm.lists.push(newList);
+                vm.tempName = '';
+            } else {
+                alert('Please Enter A Name');
+            }
         }
 
     }
